@@ -45,9 +45,9 @@ $query = "SELECT * FROM `student` ORDER BY id";
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right" style="padding-top: 10px">
-                <li><a href="../dashboards/admin_index.php">Admin Panel</a></li>
-                <li class="active"><a href="teachers_view.php">View Trainers</a></li>
-                <li ><a href="teachers_add.php">Add Trainers</a></li>
+                <li><a href="">Admin Panel</a></li>
+                <li class="active"><a href="students_view.php">View Trainers</a></li>
+                <li ><a href="students_add.php">Add Trainers</a></li>
             
             </ul>
         </div>
@@ -64,25 +64,7 @@ $query = "SELECT * FROM `student` ORDER BY id";
             </div>
 
             <div class="container">
-                <div class="row">
-                    <?php
-                    	foreach ($db->query($query) as $student):
-                    ?>
-                        <div class="col-md-8 col-md-offset-2">
-             
-                           <div class="heading pull-right">
-                              	<img src ="images/<?php echo $student['image'];?>"height="100px" width="100px" >
-                                <h4 class="text-justify">Name: <?php echo $student['FullName'];?></h4>
-                                <p class="text-justify">Phone Number: <?php echo $student['Mobile'];?></p>
-                                <p class="text-justify">Email: <?php echo $student['email'];?></p>
-                                <p class="text-justify">Educations: <?php echo $student['Education'];?></p>
-                            </div>
-                            
-                        </div>
-                        <?php
-                    		endforeach;
-                    	?>
-                </div>
+                
                 <div class="row">
                     <div class="col-md-12">
                         
@@ -93,6 +75,7 @@ $query = "SELECT * FROM `student` ORDER BY id";
                               <th scope="col">Full Name</th>
                               <th scope="col">Father's Name</th>
                               <th scope="col">Mother's Name</th>
+                              <th scope="col">Gender</th>
                               <th scope="col">Date of Birth</th>
                               <th scope="col">Education</th>
                               <th scope="col">Email</th>
@@ -106,30 +89,66 @@ $query = "SELECT * FROM `student` ORDER BY id";
                             </tr>
                           </thead>
                           <tbody>
-                            <?php
-                        foreach ($db->query($query) as $student):
+                            <?php foreach ($db->query($query) as $student):
                     ?>
                             <tr>
                               <td scope="row" class="text-success"><?php echo $student['id'];?></td>
                               <td scope="row"><?php echo $student['FullName'];?></td>
                               <td scope="row"><?php echo $student['FatherName'];?></td>
                               <td scope="row"><?php echo $student['MotherName'];?></td>
+                              <td scope="row"><?php
+                              if ($student['Gender']== 1) {
+                                  echo "Male";
+                              }else{
+                                  echo "Female";
+
+                              } ?></td>
                               <td scope="row"><?php echo $student['BithDate'];?></td>
                               <td scope="row"><?php echo $student['Education'];?></td>
                               <td scope="row"><?php echo $student['email'];?></td>
                               <td scope="row"><?php echo $student['Nid'];?></td>
                               <td scope="row"><?php echo $student['Mobile'];?></td>
-                              <td scope="row"><?php echo $student['BloodGroup'];?></td>
+                              <td scope="row">
+                                  <?php 
+                                  if ($student['BloodGroup'] == 1) {
+                                      echo "O (+)";
+                                  }elseif($student['BloodGroup'] == 2){
+                                      echo "O (-)";
+                                  }elseif($student['BloodGroup'] == 3){
+                                      echo "A (+)";
+                                  }elseif($student['BloodGroup'] == 4){
+                                      echo "A (-)";
+                                  }elseif($student['BloodGroup'] == 5){
+                                      echo "B (+)";
+                                  }elseif($student['BloodGroup'] == 6){
+                                      echo "B (-)";
+                                  }elseif($student['BloodGroup'] == 7){
+                                      echo "AB (+)";
+                                  }elseif($student['BloodGroup'] == 8){
+                                      echo "AB (-)";
+                                  }elseif($student['BloodGroup'] == ""){
+                                      echo "Null";
+                                  }
+
+                                   ?>
+
+
+
+
+
+                              </td>
                               <td scope="row"><img class="rounded-circle" src ="images/<?php echo $student['image'];?> "height="100px" width="100px" ></td>
                               <td colspan="2">
-                                  <a href="" class="btn btn-primary"> Edit</a>
-                                     <a href="" class="btn btn-danger" > Delete</a>
+                                  <a href="students_edit.php?id=<?php echo $student['id'];?>" class="btn btn-primary"> Edit</a>
+                                     <a href="students_delete.php?id=<?php echo $student['id'];?>" class="btn btn-danger" > Delete</a>
+                                     
                                   
                               </td>
                            
                               
                             </tr>                            
-                            <?php
+                            <?php 
+                      
                             endforeach;
                         ?>
                           </tbody>
@@ -173,6 +192,27 @@ $query = "SELECT * FROM `student` ORDER BY id";
         </div>
     </div>
 </footer>
+
+
+<!-- jqery -->
+<!-- <script>
+    $('#newsletterForm').validate({
+    submitHandler: function(form) {
+        jQuery(form).ajaxSubmit({
+                success: function() {
+                    $('#newsletterForm').html("<div id='success-message'></div>");
+                    $('#success-message').html("<p><strong>Thank you.</strong> <br/>You've been added to our list and will hear from us soon!</p>");
+                },
+                error: function() {
+                    $('#newsletterForm').html("<div id='success-message'></div>");
+                    $('#success-message').html("<p><strong>That email already exists.</strong> <br/>Please enter another email address.</p>");
+                }
+            });
+        }
+    });
+</script>
+ -->
+
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="../assets/js/jquery.min.js"></script>

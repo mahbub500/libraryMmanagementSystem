@@ -1,8 +1,8 @@
 <?php
 $msg = "";
 if(isset($_POST['upload'])){
-	$target = "images/".basename($_FILES['image']['name']);
-    var_dump($target);
+    $target = "images/".basename($_FILES['image']['name']);
+    // var_dump($target);
 }
 ////connection to database
 
@@ -16,10 +16,10 @@ if(isset($_POST['upload'])){
 //           VALUES ("'.$image.'","'.$_POST['names'].'","'.$_POST['emails'].'","'.$_POST['phones'].'","'.$_POST['educations'].'","'.$_POST['experiences'].'")';
 
 // if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){
-// $msg = "Image uploaded Successfully";	
+// $msg = "Image uploaded Successfully";    
 // }
 // else{
-// 	$msg = "There is a problem";
+//  $msg = "There is a problem";
 // }
 // //execute the query using php
 // $result = $db->exec($query);
@@ -32,16 +32,20 @@ if(isset($_POST['upload'])){
      // $post = extract($_POST);
      // print_r($post);
 
+
+
  if(isset($_POST["upload"])){
 
         extract($_POST);
+
+
         $education=$_POST["education"];
-        $allEducation=  implode(", ", $education);
+        $allEducation=  implode(",", $education);
       $mysqli = @new mysqli("localhost", "root", "", "studentlibery");
            
 
 
-    $sql = "INSERT INTO `student` (`id`, `Reg_id`, `FullName`, `FatherName`, `MotherName`, `Gender`, `Nid`, `email`, `BithDate`, `Education`, `image`, `BloodGroup`, `Mobile`, `Adress`) VALUES (NULL, '$Reg_id', '$FullName', '$FatherName', '$MotherName', '$gender', '$nid', '$emails', '$BirthDate', '$allEducation', '$image', '$blood', '$Mobile', '$address ') ";
+    $sql = "INSERT INTO `student` (`id`, `Reg_id`, `FullName`, `FatherName`, `MotherName`, `Gender`, `Nid`, `email`, `BithDate`, `Education`, `image`, `BloodGroup`, `Mobile`, `Adress`) VALUES (NULL, '$Reg_id', '$FullName', '$FatherName', '$MotherName', '$gender', '$nid', '$emails', '$BirthDate', '$allEducation', '$image', '$blood', '$mobile', '$address ') ";
 
     if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){
 echo "Image uploaded Successfully";    
@@ -51,7 +55,7 @@ else{
 }
 
      // $sql = "CALL ad_manufacture('$name','$adress','$contact_no')" ;
-           echo $sql;
+           // echo $sql;
       $mysqli->query($sql);      
       $final = $mysqli->affected_rows;
       if ($final == 1) {
@@ -81,12 +85,12 @@ else{
 
 //var_dump($result);
 
-//if($result){
+// if($final){
 //    echo "Data has been inserted successfully.";
-//}else{
+// }else{
 //    echo "There is an error. Please try again later.";
-//}
-//header("location:teachers_view.php");
+// }
+// header("location:students_view.php");
 ?>
 
 
@@ -130,8 +134,8 @@ else{
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right" style="padding-top: 10px">
                 <li><a href="../dashboards/admin_index.php">Admin Panel</a></li>
-                <li><a href="teachers_view.php">View Trainers</a></li>
-                <li><a href="teachers_add.php">Add Trainers</a></li>
+                <li><a href="students_view.php">View Trainers</a></li>
+                <li><a href="students_add.php">Add Trainers</a></li>
 
             </ul>
         </div>
@@ -142,20 +146,15 @@ else{
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-danger text-center">
                 <?php
-                // if($result){
-                //     echo "Data has been added successfully.";
-                //     echo "<br>";
-                //     echo "Please Go back to Dashboard or Trainer Page.";
-                // }else{
-                //     echo "Sorry !";
-                //     echo "<br>";
-                //     echo "There is an error. Please try again later.";
-                // }
-
-
-
-
-
+                if($final){
+                    echo "Data has been added successfully.";
+                    echo "<br>";
+                    echo "Please Go back to Dashboard or Trainer Page.";
+                }else{
+                    echo "Sorry !";
+                    echo "<br>";
+                    echo "There is an error. Please try again later.";
+                }
 
 
                 ?>
@@ -171,16 +170,16 @@ else{
 <?php 
 
 
-    foreach ($_POST as $key => $value) {
-        echo "<tr>";
-        echo "<td>";
-        echo $key;
-        echo "</td>";
-        echo "<td>";
-        echo $value;
-        echo "</td>";
-        echo "</tr>";
-    }
+    // foreach ($_POST as $key => $value) {
+    //     echo "<tr>";
+    //     echo "<td>";
+    //     echo $key;
+    //     echo "</td>";
+    //     echo "<td>";
+    //     echo $value;
+    //     echo "</td>";
+    //     echo "</tr>";
+    // }
 
 
 ?>

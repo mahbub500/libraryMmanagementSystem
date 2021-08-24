@@ -1,9 +1,10 @@
 <?php
 //connection to database
-$db = new PDO('mysql:host=localhost;dbname=seip;charset=utf8mb4', 'root', '');
+$db =  @new mysqli("localhost", "root", "", "studentlibery");
+
 
 //build query
-$query = "SELECT * FROM `teachers` WHERE id = ".$_GET['id'];
+$query = "SELECT * FROM `student` WHERE id = ".$_GET['id'];
 
 //execute the query using php
 foreach ($db->query($query) as $row){

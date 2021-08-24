@@ -38,7 +38,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right" style="padding-top: 10px">
                 <li><a href="">Admin Panel</a></li>
-                <li><a href="teachers_view.php">View Trainers</a></li>
+                <li><a href="students_view.php">View Trainers</a></li>
                 <li class="active"><a href="#">Add Trainers</a></li>
             
             </ul>
@@ -56,7 +56,7 @@
                  <hr class="bottom-line">
             </div>
             <?php $reg_id =1000;  ?>
-            <form action="teachers_add_done.php" method="post" enctype="multipart/form-data">
+            <form action="students_add_done.php" method="post" enctype="multipart/form-data">
                  <input name="Reg_id" type="hidden" class="form-control" value=" <?php echo $reg_id++; ?> " required >
                 <br>
                 Name: <input name="FullName" type="text" class="form-control" placeholder=" Enter Name" required >
@@ -69,7 +69,7 @@
                 <br>
                 Nid: <input name="nid" type="number" class="form-control" placeholder=" Enter Trainers NID Number " required >
                 <br>
-                Mobile No: <input name="Mobile" type="number" class="form-control" placeholder=" Enter Trainers NID Number " required >
+                Mobile No: <input name="mobile" type="number" class="form-control" placeholder=" Enter Trainers Mobile Number " required >
                 <br>
                 <div class="row">
                   <div class="col-md-6">
@@ -99,10 +99,10 @@
                             <h5>Check Your Education:</h5>  
                          <div class="form-check">
 
-                    <input type="checkbox" class="form-check-input" id="Country" name="education[]" value="S.Sc"> S.Sc 
-                    <input type="checkbox" class="form-check-input" id="Country" name="education[]" value="H.Sc"> H.Sc 
-                    <input type="checkbox" class="form-check-input" id="Country" name="education[]" value="Honors"> Honours 
-                    <input type="checkbox" class="form-check-input" id="Country" name="education[]" value="Masters"> Masters 
+                    <input type="checkbox" class="form-check-input" name="education[]" value="S.Sc"> S.Sc 
+                    <input type="checkbox" class="form-check-input" name="education[]" value="H.Sc"> H.Sc 
+                    <input type="checkbox" class="form-check-input" name="education[]" value="Honors"> Honours 
+                    <input type="checkbox" class="form-check-input" name="education[]" value="Masters"> Masters 
 
 
                             
