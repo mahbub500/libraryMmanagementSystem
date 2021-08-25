@@ -21,8 +21,8 @@ if(isset($_POST['upload'])){
 
 $image = $_FILES['image']['name'];
 // build query
+	// `image` = '".$image."',
 $query = "UPDATE `student` SET
-	`image` = '".$image."',
     `FullName` = '".$_POST['FullName']."', 
     `FatherName` = '".$_POST['FatherName']."', 
     `MotherName` = '".$_POST['MotherName']."', 
