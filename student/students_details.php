@@ -1,98 +1,120 @@
+
+
 <?php
 //connection to database
-$db = new PDO('mysql:host=localhost;dbname=seip;charset=utf8mb4', 'root', '');
+ $db = @new mysqli("localhost", "root", "", "studentlibery");
 
 //build query
-$query = "SELECT * FROM `teachers` WHERE id = ".$_GET['id'];
+$query = "SELECT * FROM `student` WHERE id = ".$_GET['id'];
 
 //execute the query using php
 foreach ($db->query($query) as $row){
-    $teachers = $row;
+    $student = $row;
+    // var_dump($student);
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SEIP Database Management</title>
-    <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
-    <link rel="stylesheet" type="text/css" href=../assets/css/font-awesome.min.css>
-    <!-- bootstrap  Latest compiled and minified CSS -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/imagehover.min.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    <!-- =======================================================
-        Theme Name: Code_Finder
-        Author: Code_Finder
-    ======================================================= -->
-</head>
-<body style="padding-top: 80px">
-<!--Navigation bar start =================================================-->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="../index.php"><img src="../assets/images/bitm.png" alt="logo" height="40" width="100"></a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right" style="padding-top: 10px">
-                <li><a href="../dashboards/admin_index.php">Admin Panel</a></li>
-                <li><a href="teachers_view.php">View Trainers</a></li>
-                <li><a href="teachers_add.php">Add Trainers</a></li>
-            
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php require_once("Header_nav.php") ?>
 <!--/ Navigation bar end =================================================-->
 
 <!--work-shop details start ==========================================================-->
-<section id="work-shop" class="section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="header-section text-center">
-                <h2>Meet Our Excellent Trainers </h2>
-            <p>We provide the best trainers for you. They are passionate, highly trained, and skilled.</p>
-                <hr class="bottom-line">
+
+ <div class="container">   
+ <div class="service-box text-center">
+     <div class="pm-staff-profile">
+              <img src="images/<?php echo $student['image'];?>" alt="" class="img-thumbnail img-squear" height="285px" width="535px" />
             </div>
-            <div class="col-md-10 col-md-offset-1">
-                <div class="service-box text-center">
-                 	<div class="pm-staff-profile-image-wrapper text-center">
-						<div class="pm-staff-profile">
-						  <img src="images/<?php echo $teachers['image'];?>" alt="" class="img-thumbnail img-squear" height="250px" width="175px" />
-						</div>   
-              		</div>  
-              		<hr class="bottom-line">
-                    <div class="teachers-details">
-                        <h1><?php echo $teachers['names'];?></h1>
-                        <h4>Phone Number: <?php echo $teachers['phones'];?></h4>
-                        <h4>Email: <?php echo $teachers['emails'];?></h4>
-                        <p>
-                            <b>Educations:</b> <?php echo $teachers['educations'];?>
-                        </p>
-                        
-                        <p>
-                            <b>Experiences:</b> <?php echo $teachers['experiences'];?>
-                        </p>
-                      
-                    </div>
-                </div>
-            </div>
-        </div>
-       </div>
-</section>
+ </div>
+ <div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-dark">
+             <thead>
+                <tr>
+              <th scope="col" class="text-center">Field </th>
+              <th scope="col">Detail </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+
+                <td scope="row" class=" text-success text-center">Sl No</td>
+                <td scope="row" class="text-success"><?php echo $student['id'];?></td>
+            </tr>
+
+            <tr>
+              <td scope="row" class="text-success text-center">Student Name</td>
+              <td scope="row" class="text-success"> <?php echo $student['FullName'];?> </td>
+            </tr>
+            <tr>
+              <td scope="row" class="text-success text-center">Father's Name</td>
+              <td scope="row" class="text-success"> <?php echo $student['FatherName'];?> </td>
+            </tr>
+            <tr>
+              <td scope="row" class="text-success text-center">Mother's Name</td>
+              <td scope="row" class="text-success"> <?php echo $student['MotherName'];?> </td>
+            </tr>
+            <tr>
+              <td scope="row" class="text-success text-center">Gender</td>
+              <td scope="row" class="text-success "> <?php
+              if ($student['Gender']== 1) {echo "Male"; }else{ echo "Female";} ?> </td>
+            </tr>
+            <tr>
+              <td scope="row" class="text-success text-center">Birth Date</td>
+              <td scope="row"><?php echo $student['BithDate'];?></td>
+            </tr>
+            <tr>
+              <td scope="row" class="text-success text-center">Education</td>
+              <td scope="row"><?php echo $student['Education'];?></td>
+            </tr>
+            <tr>
+              <td scope="row" class="text-success text-center">Email</td>
+              <td scope="row"><?php echo $student['email'];?></td>
+            </tr>
+            <tr>
+              <td scope="row" class="text-success text-center">Nid</td>
+              <td scope="row"><?php echo $student['Nid'];?></td>
+            </tr>
+            <tr>
+              <td scope="row" class="text-success text-center">Mobile</td>
+              <td scope="row"><?php echo $student['Mobile'];?></td>
+            </tr>
+            <tr>
+              <td scope="row" class="text-success text-center">Blood Group</td>
+              <td scope="row"><?php 
+                  if ($student['BloodGroup'] == 1) {
+                      echo "O (+)";
+                  }elseif($student['BloodGroup'] == 2){
+                      echo "O (-)";
+                  }elseif($student['BloodGroup'] == 3){
+                      echo "A (+)";
+                  }elseif($student['BloodGroup'] == 4){
+                      echo "A (-)";
+                  }elseif($student['BloodGroup'] == 5){
+                      echo "B (+)";
+                  }elseif($student['BloodGroup'] == 6){
+                      echo "B (-)";
+                  }elseif($student['BloodGroup'] == 7){
+                      echo "AB (+)";
+                  }elseif($student['BloodGroup'] == 8){
+                      echo "AB (-)";
+                  }elseif($student['BloodGroup'] == ""){
+                      echo "Null";
+                  }
+
+                   ?>
+                       
+                </td>
+            </tr>
+            <tr>
+              <td scope="row" class="text-success text-center">Adress</td>
+              <td scope="row"><?php echo $student['Adress'];?></td>
+            </tr>
+        </tbody>
+        </table>
+        
+    </div>
+</div>
+</div>
 <!--/ work-shop end ==========================================================-->
 
 <!--Footer-->
@@ -125,13 +147,4 @@ foreach ($db->query($query) as $row){
             Designed by <a href="../contact/code_finder.php">Code_Finder</a>
         </div>
     </div>
-</footer>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/jquery.easing.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-<!--<script src="js/custom.js"></script>-->
-
-</body>
-</html>
+<?php require_once("Fotter.php") ?>
