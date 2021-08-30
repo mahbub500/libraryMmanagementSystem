@@ -1,0 +1,8 @@
+Admin 
+
+id = admin 
+pas = 123456
+
+User
+id = user
+pass = 123456
