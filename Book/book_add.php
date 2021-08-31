@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +59,7 @@
                 <br>
                MRP: <input type="number" name="mrp" class="form-control" placeholder="MRP">
                 <br>
-               ISSBN Number: <input type="issbn" name="issbn_number" placeholder="Enter ISSBN Number" class="form-control">
+               ISSBN Number: <input type="number" name="issbn" placeholder="Enter ISSBN Number" class="form-control">
                <br>
                Language:<input type="text" name="language" placeholder="Language" class="form-control">
                <br>

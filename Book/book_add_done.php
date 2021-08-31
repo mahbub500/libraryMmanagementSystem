@@ -14,13 +14,15 @@ if(isset($_POST['upload'])){
         extract($_POST);
 
 
-        $education=$_POST["education"];
-        $allEducation=  implode(",", $education);
-      $mysqli = @new mysqli("localhost", "root", "", "studentlibery");
+
+      //   $education=$_POST["education"];
+      //   $allEducation=  implode(",", $education);
+      // $mysqli = @new mysqli("localhost", "root", "", "studentlibery");
            
 
 
-    $sql = "INSERT INTO 'book'('id', 'name', 'writer', 'publication', 'mrp', 'issbn_number', 'language', 'catagory', 'image', 'release_date', 'quantity') VALUES (NULL,'$book_name','$writer','$publication','$mrp','$issbn','$language','$catagory','$image','$release','$quantity')";
+    $sql = "INSERT INTO `book` (`id`, `name`, `writer`, `publication`, `mrp`, `issbn_number`, `language`, `catagory`, `image`, `release_date`, `quantity`) VALUES (NULL,'$book_name','$writer','$publication','$mrp','$issbn','$language','$catagory','$image','$release','$quantity')";
+    echo $sql;
 
     if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){
 echo "Image uploaded Successfully";    
@@ -36,7 +38,7 @@ else{
       if ($final == 1) {
           echo "Hello";
       }else{
-        echo"Good Bye";
+        echo"Good Bye"; 
       }
    }
  
